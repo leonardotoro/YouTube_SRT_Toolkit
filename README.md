@@ -3,6 +3,8 @@
 ## Overview
 The YouTube .SRT Toolkit is a comprehensive script designed to automate the extraction, processing, and transcription of audio from YouTube videos. This script is particularly useful for content creators, educators, and anyone looking to create transcripts or subtitles for YouTube videos. It simplifies the workflow by downloading audio, segmenting it based on silence, transcribing the segmented audio, and merging the transcriptions into a single SRT file.
 
+PS Comments and some functions on .py script are in italian, I will translate it soon but if you have urgency is fully usable.
+
 ## Features
 - **Video Audio Extraction**: Downloads the audio track of a given YouTube video URL.
 - **Audio Segmentation**: Splits the audio into smaller segments based on periods of silence, facilitating easier transcription.
