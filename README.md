@@ -11,6 +11,12 @@ PS Comments and some functions on .py script are in italian, I will translate it
 - **Audio Transcription**: Utilizes OpenAI's API to transcribe the audio segments into text.
 - **Subtitles Merging**: Combines all individual SRT files into a single, comprehensive subtitle file.
 
+## Future improvements
+- **SRT Translation**: To translate .srt files in multilanguages.
+- **Audio Translation**: To translate audio files in multilanguages.
+- **YouTube SRT Upload**: To upload .srt files generated directly on source video.
+- **Multilanguages Audio Upload**: To upload audio translated directly on source video.
+
 ## Structure
 The script is organized into several key functions, each responsible for a part of the process:
 - `get_video_title(url)`: Retrieves the title of a YouTube video.
