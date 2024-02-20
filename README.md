@@ -37,7 +37,7 @@ The script is organized into several key functions, each responsible for a part 
 ## Installation
 To install the necessary dependencies, run the following command:
 ```
-pip install pydub pytube openai ffmpeg
+pip install pydub pytube openai ffmpeg pytube
 ```
 ## Contributing
 Contributions are welcome! If you have suggestions for improving the script, feel free to open an issue or submit a pull request.
