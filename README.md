@@ -22,7 +22,7 @@ The script is organized into several key functions, each responsible for a part 
 
 ## How to Use
 1. **Setup**: Ensure Python is installed on your system and install the required packages (`pydub`, `pytube`, `openai`, etc.).
-2. **API Key**: Set your OpenAI API key in the environment variables or directly in the script.
+2. **API Key**: Set your OpenAI API key in the environment variables or directly in the script. --> https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety
 3. **Execution**: Run the script from the command line, providing the YouTube video URL when prompted.
 4. **Follow Prompts**: The script will guide you through the process, asking for any necessary input along the way.
 5. **Output**: The final output will be an MP3 file of the video's audio and an SRT file containing the transcriptions.
@@ -37,10 +37,8 @@ The script is organized into several key functions, each responsible for a part 
 ## Installation
 To install the necessary dependencies, run the following command:
 ```
-pip install pydub pytube openai
+pip install pydub pytube openai ffmpeg
 ```
-Note: `ffmpeg` needs to be installed separately and added to your system's PATH.
-
 ## Contributing
 Contributions are welcome! If you have suggestions for improving the script, feel free to open an issue or submit a pull request.
 
