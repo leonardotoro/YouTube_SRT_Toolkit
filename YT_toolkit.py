@@ -7,52 +7,50 @@ from openai import OpenAI
 import subprocess
 import srt
 import re
-import pyperclip  # da cancellare quando lo script funziona
 from datetime import datetime, timedelta
 
-# Assicurati di impostare la tua chiave API di OpenAI qui o nel tuo ambiente
+# Be sure to set your OpenAI API key here or in your environment
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-# Funzione per data e test
+# Function for date and test
 def log_message(message):
-    """Stampa un messaggio log con timestamp."""
     print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - {message}")
 
-# Funzione per ottenere il titolo di un video YouTube dato il suo URL
+# Function to get the title of a YouTube video given its URL
 def get_video_title(url):
     try:
         yt = YouTube(url)
         title = yt.title
-        log_message(f"Titolo del video recuperato: {title}")
+        log_message(f"Title of the recovered video: {title}")
         return title
     except Exception as e:
-        log_message(f"Errore durante il recupero del titolo del video: {e}")
+        log_message(f"Error while retrieving video title: {e}")
         return None
 
-# Ottiene il titolo di un video YouTube dato il suo URL.
+# Gets the title of a YouTube video given its URL.
 def get_video_title(url):
     try:
         yt = YouTube(url)
         title = yt.title
-        log_message(f"Titolo del video recuperato: {title}")
+        log_message(f"Title of the recovered video: {title}")
         return yt.title
     except Exception as e:
-        log_message(f"Errore durante il recupero del titolo del video: {e}")
+        log_message(f"Error while retrieving video title: {e}")
         return None
 
-# Verifica se esiste un file MP3 con il titolo del video e lo elimina se presente.
+# Checks if there is an MP3 file with the title of the video and deletes it if present.
 def check_and_delete_mp3(title):
-    # Sostituisce caratteri non validi nel nome del file
+    # Replaces invalid characters in the file name
     filename = f"{title.replace('/', '_').replace('\\', '_')}.mp3"
-    log_message(f"Verifica della presenza del file '{filename}' nella cartella ")
+    log_message(f"Checking for the presence of the file '{filename}' in the folder")
     if os.path.exists(filename):
         try:
             os.remove(filename)
-            log_message(f"Il file '{filename}' è stato trovato ed eliminato.")
+            log_message(f"The file '{filename}' was found and deleted.")
         except Exception as e:
-            log_message(f"Errore durante l'eliminazione del file '{filename}': {e}")
+            log_message(f"Error while deleting the file '{filename}': {e}")
     else:
-        log_message(f"Nessun file '{filename}' da eliminare.")
+        log_message(f"No '{filename}' files to delete.")
 
 # funzione per scaricare l'audio del video
 def download_audio(url):
