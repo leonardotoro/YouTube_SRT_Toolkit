@@ -1,7 +1,6 @@
 import os
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
-from pytube import YouTube 
 import openai
 from openai import OpenAI
 import subprocess
@@ -54,39 +53,39 @@ def check_and_delete_mp3(title):
 
 # funzione per scaricare l'audio del video
 def download_audio(url):
-    #Scarica l'audio da un video di YouTube
     try:
         log_message("Inizio del processo di download.")
-        yt = YouTube(url)
-        video_title = yt.title.replace("/", "_").replace("\\", "_")  # Sostituisce i caratteri non validi nel titolo
+
+        # Definisci il comando per yt-dlp per ottenere il titolo del video
+        get_title_command = ['yt-dlp', '--get-title', '--no-warnings', url]
+        process = subprocess.run(get_title_command, capture_output=True, text=True, check=True)
+        video_title = process.stdout.strip().replace("/", "_").replace("\\", "_")
+
         log_message(f"Video trovato: {video_title}")
 
-        # Seleziona lo stream audio con la più alta qualità
-        audio_stream = yt.streams.get_audio_only()
-        log_message("Stream audio selezionato.")
+        # Configura yt-dlp per scaricare l'audio a 128k
+        download_command = [
+            'yt-dlp',
+            '-x',  # Estrai l'audio
+            '--audio-format', 'mp3',  # Formato audio desiderato
+            '--audio-quality', '128K',  # Imposta il bitrate a 128k
+            '-o', f"{video_title}.%(ext)s",  # Formato del nome file di output
+            url  # URL del video YouTube
+        ]
 
-        # Scarica lo stream audio
-        log_message("Inizio download audio...")
-        download_path = audio_stream.download(filename=f"{video_title}.mp4")
-        log_message("Download completato.")
+        # Scarica e converte l'audio in MP3
+        log_message("Inizio download audio e conversione in MP3...")
+        subprocess.run(download_command, check=True)
+        log_message("Download e conversione completati.")
 
-        # Converti in MP3
         mp3_filename = f"{video_title}.mp3"
-        log_message("Inizio conversione in MP3...")
-        subprocess.run([
-            "ffmpeg", "-i", download_path,
-            "-b:a", "128k",  # Imposta il bitrate a 128k
-            mp3_filename
-        ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        log_message("Conversione completata.")
-
-        # Rimuovi il file originale scaricato
-        os.remove(download_path)
-        log_message("File originale eliminato.")
 
         return mp3_filename
-    except Exception as e:
+    except subprocess.CalledProcessError as e:
         log_message(f"Errore durante il download/conversione: {e}")
+        return None
+    except Exception as e:
+        log_message(f"Errore non previsto: {e}")
         return None
 
 def split_and_rename(audio_segment, base_name, part_index=1, time_limit=1500*1000, silence_threshold=-35, minimum_silence=800):
