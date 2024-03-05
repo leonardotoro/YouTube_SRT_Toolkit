@@ -27,7 +27,7 @@ The script is organized into several key functions, each responsible for a part 
 - `merge_srt_files(srt_files_info, final_file_path)`: Merges all SRT files into a single file.
 
 ## How to Use
-1. **Setup**: Ensure Python is installed on your system and install the required packages (`pydub`, `pytube`, `openai`, etc.).
+1. **Setup**: Ensure Python is installed on your system and install the required packages (`pydub`, `yt-dlp`, `openai`, etc.).
 2. **API Key**: Set your OpenAI API key in the environment variables or directly in the script. --> https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety
 3. **Execution**: Run the script from the command line, providing the YouTube video URL when prompted.
 4. **Follow Prompts**: The script will guide you through the process, asking for any necessary input along the way.
@@ -36,14 +36,14 @@ The script is organized into several key functions, each responsible for a part 
 ## Dependencies
 - Python 3.x
 - `pydub`
-- `pytube`
+- `yt-dlp`
 - `openai`
 - `ffmpeg` (for audio conversion)
 
 ## Installation
 To install the necessary dependencies, run the following command:
 ```
-pip install pydub pytube openai ffmpeg pytube
+pip install pydub yt-dlp openai ffmpeg pytube
 ```
 ## Contributing
 Contributions are welcome! If you have suggestions for improving the script, feel free to open an issue or submit a pull request.
