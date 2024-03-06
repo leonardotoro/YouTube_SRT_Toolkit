@@ -40,7 +40,7 @@ def get_video_title(url):
 # Checks if there is an MP3 file with the title of the video and deletes it if present.
 def check_and_delete_mp3(title):
     # Replaces invalid characters in the file name
-    filename = f"{title.replace('/', '_').replace('\\', '_')}.mp3"
+    filename = f"{title.replace('/', '_').replace(os.sep, '_')}.mp3"
     log_message(f"Checking for the presence of the file '{filename}' in the folder")
     if os.path.exists(filename):
         try:
